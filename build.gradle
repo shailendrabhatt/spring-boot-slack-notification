@@ -1,0 +1,35 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.0.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}",
+				'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6')
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: "org.sonarqube"
+
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('com.github.seratch:jslack:1.0.26')
+	compile files('lib/ojdbc6.jar')
+	compile('commons-dbutils:commons-dbutils:1.7')
+	compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.hibernate:hibernate-java8:5.1.0.Final')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
